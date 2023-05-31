@@ -1,7 +1,14 @@
 FROM r-base:4.2.0
 
 RUN apt-get update --quiet \
-   && apt-get install curl libcurl4-openssl-dev -y --quiet \
+   && apt-get install \
+     curl \
+     libssl-dev \
+     libcurl4-openssl-dev \
+     libxml2-dev -y --quiet \
+     libfontconfig1-dev \
+     libharfbuzz-dev libfribidi-dev \
+     libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
    && apt-get autoremove -y --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
