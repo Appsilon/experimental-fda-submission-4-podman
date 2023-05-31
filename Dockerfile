@@ -19,8 +19,9 @@ COPY ./submissions-pilot2 $APP_DIR
 
 WORKDIR $APP_DIR
 
-RUN Rscript -e "install.packages(\"renv\")" \
-  && Rscript -e "renv::restore()"
+RUN Rscript -e "install.packages(\"renv@0.15.2\")"
+
+RUN Rscript -e "renv::restore()"
 
 COPY ./docker_app.R $APP_DIR/docker_app.R
 
