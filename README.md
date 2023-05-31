@@ -26,3 +26,7 @@ podman build . --tag experimental-fda-submission-4-podman
 podman pod create --publish 8787:8787 pilot-pod
 podman run -dt --pod pilot-pod experimental-fda-submission-4-podman:latest
 ```
+
+## Screenshot of the Pilot running
+
+![](screenshot.png)
