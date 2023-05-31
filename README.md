@@ -6,14 +6,15 @@ Proof of concept by [Appsilon](https://appsilon.com/) based on [Pilot 2](https:/
 
 [Install Podman](https://podman.io/docs/installation) locally, for example, in Ubuntu it can be installed via `sudo apt install qemu-system podman -y.`
 
-🔴 Please note that the configuration file `/etc/containers/registries.conf` must contain a valid registry.
-Searching for an image should get results _(the example below has docker.io as a registry)_.
+🔴 Please note that the configuration file `/etc/containers/registries.conf` must contain `ghcr.io` or `docker.io` as a valid registry.
+Searching for the `r-ver` image should get multiple results.
 
 ```bash
-podman search r-base
+podman search r-ver
 # This should output some results, such as:
 # NAME                                     DESCRIPTION
-# docker.io/library/r-base                 R is a system for statistical computation an...
+# docker.io/rocker/r-ver                Reproducible builds to fixed versions of R
+# ...
 ```
 
 ## Run the container locally with podman

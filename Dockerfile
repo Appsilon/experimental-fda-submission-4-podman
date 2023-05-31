@@ -1,4 +1,4 @@
-FROM r-base:4.2.0
+FROM r-ver:4.2.0
 
 RUN apt-get update --quiet \
    && apt-get install \
