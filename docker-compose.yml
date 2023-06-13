@@ -1,7 +1,11 @@
 version: "3.1"
 
 services:
-  teal:
-    build: .
+  pilot-4-podman:
+    build:
+      context: .
+      args:
+        LOCAL_DIR: ./submissions-pilot2
+        RENV_VERSION: renv@0.15.2
     ports:
       - "8787:8787"
