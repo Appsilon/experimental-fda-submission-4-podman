@@ -8,7 +8,7 @@ Proof of concept Shiny container by [Appsilon](https://appsilon.com/) based on [
 
 [Install Podman](https://podman.io/docs/installation) locally _(in Ubuntu it can be installed via `sudo apt install qemu-system podman podman-compose -y.`)_
 
-Clone the repository and initialize the git module _(`submission-pilot2` with the default Golem-based Application )_.
+Clone the repository and initialize the git modules _(`submission-pilot2` with the default Golem-based Application and `rhino/pilot2-modified` with Rhino-based application)_.
 
 ```
 $ git clone --recurse-submodules https://github.com/Appsilon/experimental-fda-submission-4-podman

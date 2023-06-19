@@ -29,7 +29,7 @@ COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
-RUN Rscript -e "renv::restore()"
+RUN Rscript -e "options(\"renv.config.install.remotes\" = FALSE); renv::restore()"
 
 ARG R_SCRIPT=./entrypoint.R
 
