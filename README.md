@@ -45,7 +45,7 @@ $ podman-compose up -d --pull
 
 ### Using GitHub Container Registry
 
-The user can use a different container registry from the default `docker.io` by changing the `BUILD ARGS` of the docker image. It needs to change the `IMAGE_REGISTRY=ghrc.io` and `IMAGE_ORG=rocker-org` to appropriate values. The organization also needs to change as it has different usernames in `docker.io` (rocker) and `ghrc.io` (rocker-org).
+The user can use a different container registry from the default `docker.io` by changing the `BUILD ARGS` of the docker image. It needs to change the `IMAGE_REGISTRY=ghcr.io` and `IMAGE_ORG=rocker-org` to appropriate values. The organization also needs to change as it has different usernames in `docker.io` (rocker) and `ghcr.io` (rocker-org).
 
 This can be achieved in 3 different ways:
 
@@ -56,15 +56,15 @@ This can be achieved in 3 different ways:
 1\. To build the image in the command line by running:
 
 ```bash
-$ podman build . --build-arg IMAGE_REGISTRY=ghrc.io --build-arg IMAGE_ORG=rocker-arg --tag experimental-fda-submission-4-podman
+$ podman build . --build-arg IMAGE_REGISTRY=ghcr.io --build-arg IMAGE_ORG=rocker-org --tag experimental-fda-submission-4-podman
 ```
 
 2\. Edit the `Dockerfile` file by changing the following ARGS:
 
 ```
 # ...
-ARG IMAGE_REGISTRY=docker.io
-ARG IMAGE_ORG=rocker
+ARG IMAGE_REGISTRY=ghcr.io
+ARG IMAGE_ORG=rocker-org
 # ...
 
 # build the image by running:
