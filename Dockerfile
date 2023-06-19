@@ -1,10 +1,10 @@
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/usr/local/src/submissions-pilot2
-ARG RENV_VERSION="renv@0.15.2"
 ARG R_VERSION=4.2.0
 ARG R_SCRIPT=./docker_app.R
+ARG REGISTRY_SOURCE=docker.io/rocker
 
-FROM rocker-org/r-ver:$R_VERSION
+FROM $REGISTRY_SOURCE/r-ver:$R_VERSION
 
 RUN apt-get update --quiet \
    && apt-get install \
@@ -25,8 +25,6 @@ ARG LOCAL_DIR
 COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
-
-ARG RENV_VERSION
 
 RUN Rscript -e "renv::restore()"
 
