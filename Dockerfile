@@ -9,7 +9,6 @@ LABEL org.opencontainers.image.licenses="GPL-3.0-or-later" \
       org.opencontainers.image.vendor="Appsilon" \
       org.opencontainers.image.authors="André Veríssimo <andre.verissimo@appsilon.com>, Vedha Viyash <vedha@appsilon.com>"
 
-
 RUN apt-get update --quiet \
    && apt-get install \
      curl \
@@ -32,11 +31,7 @@ WORKDIR $APP_DIR
 
 RUN Rscript -e "renv::restore()"
 
-<<<<<<< HEAD
 ARG R_SCRIPT=./entrypoint.R
-=======
-ARG R_SCRIPT=./r_scripts/docker_app.R
->>>>>>> 08323ae (feat: initial support for rhino submission)
 
 COPY $R_SCRIPT $APP_DIR/entrypoint.R
 
