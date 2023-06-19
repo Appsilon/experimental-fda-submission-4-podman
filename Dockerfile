@@ -26,8 +26,8 @@ WORKDIR $APP_DIR
 
 RUN Rscript -e "renv::restore()"
 
-ARG R_SCRIPT=./docker_app.R
+ARG R_SCRIPT=./entrypoint.R
 
-COPY $R_SCRIPT $APP_DIR/docker_app.R
+COPY $R_SCRIPT $APP_DIR/entrypoint.R
 
-CMD ["Rscript", "docker_app.R"]
+CMD ["Rscript", "entrypoint.R"]
