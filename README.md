@@ -45,9 +45,20 @@ $ podman-compose up -d --pull
 
 ### Using GitHub Container Registry
 
-The user can use a different container registry from the default `docker.io` by changing the `BUILD ARGS` of the docker image. It needs to change the `IMAGE_REGISTRY=ghcr.io` and `IMAGE_ORG=rocker-org` to appropriate values. The organization also needs to change as it has different usernames in `docker.io` (rocker) and `ghcr.io` (rocker-org).
+The user can use a different container registry from the default `docker.io` by changing the `BUILD ARGS` of the docker image.
+It needs to change the `IMAGE_REGISTRY=ghcr.io` and `IMAGE_ORG=rocker-org` to appropriate values.
+The organization also needs to change as it has different usernames in `docker.io` (rocker) and `ghcr.io` (rocker-org).
 
-This can be achieved in 3 different ways:
+A preliminary step to login to GitHub registry is required, you can use your own GitHub username and password, or your personal access token (`PAT`).
+
+```bash
+$ podman login ghcr.io --username <your-username-here>
+
+# or if you already a personal access token
+echo $PAT | podman login ghcr.io --username <your-username-here> --password-stdin
+```
+
+After login, to change the registry to GitHub you can use one of the methods below:
 
 1. Running podman via command line
 2. Edit the `Dockerfile` file
