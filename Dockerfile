@@ -32,7 +32,11 @@ WORKDIR $APP_DIR
 
 RUN Rscript -e "renv::restore()"
 
+<<<<<<< HEAD
 ARG R_SCRIPT=./entrypoint.R
+=======
+ARG R_SCRIPT=./r_scripts/docker_app.R
+>>>>>>> 08323ae (feat: initial support for rhino submission)
 
 COPY $R_SCRIPT $APP_DIR/entrypoint.R
 

@@ -11,3 +11,15 @@ services:
         LOCAL_DIR: ./submissions-pilot2
     ports:
       - "8787:8787"
+
+  pilot-4-podman-rhino:
+    build:
+      context: .
+      args:
+        IMAGE_ORG: rocker
+        IMAGE_REGISTRY: docker.io
+        R_VERSION: 4.3.0
+        LOCAL_DIR: ./rhino-submissions-pilot2
+        R_SCRIPT: ./r_scripts/docker_app_rhino.R
+    ports:
+      - "9797:8787"
