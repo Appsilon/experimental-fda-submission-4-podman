@@ -1,10 +1,8 @@
-ARG LOCAL_DIR=./submissions-pilot2
-ARG APP_DIR=/usr/local/src/submissions-pilot2
 ARG R_VERSION=4.2.0
-ARG R_SCRIPT=./docker_app.R
-ARG REGISTRY_SOURCE=docker.io/rocker
+ARG IMAGE_REGISTRY=docker.io
+ARG IMAGE_ORG=rocker
 
-FROM $REGISTRY_SOURCE/r-ver:$R_VERSION
+FROM $IMAGE_REGISTRY/$IMAGE_ORG/r-ver:$R_VERSION
 
 RUN apt-get update --quiet \
    && apt-get install \
@@ -19,8 +17,8 @@ RUN apt-get update --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
 
-ARG APP_DIR
-ARG LOCAL_DIR
+ARG LOCAL_DIR=./submissions-pilot2
+ARG APP_DIR=/usr/local/src/submissions-pilot2
 
 COPY $LOCAL_DIR $APP_DIR
 
@@ -28,7 +26,7 @@ WORKDIR $APP_DIR
 
 RUN Rscript -e "renv::restore()"
 
-ARG R_SCRIPT
+ARG R_SCRIPT=./docker_app.R
 
 COPY $R_SCRIPT $APP_DIR/docker_app.R
 
