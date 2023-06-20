@@ -4,6 +4,12 @@ ARG IMAGE_ORG=rocker
 
 FROM $IMAGE_REGISTRY/$IMAGE_ORG/r-ver:$R_VERSION
 
+LABEL org.opencontainers.image.licenses="GPL-3.0-or-later" \
+      org.opencontainers.image.source="https://github.com/Appsilon/experimental-fda-submission-4-podman" \
+      org.opencontainers.image.vendor="Appsilon" \
+      org.opencontainers.image.authors="André Veríssimo <andre.verissimo@appsilon.com>, Vedha Viyash <vedha@appsilon.com>"
+
+
 RUN apt-get update --quiet \
    && apt-get install \
      curl \

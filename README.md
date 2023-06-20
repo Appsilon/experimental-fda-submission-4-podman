@@ -1,16 +1,14 @@
 # Podman FDA Submission Pilot 4
 
-Proof of concept by [Appsilon](https://appsilon.com/) based on [Pilot 2](https://github.com/RConsortium/submissions-pilot2/).
+> Container that runs Shiny Application with Pilot 2 submission
+
+Proof of concept Shiny container by [Appsilon](https://appsilon.com/) based on [Pilot 2](https://github.com/RConsortium/submissions-pilot2/) from the RConsortium.
 
 ## Requirements
 
 [Install Podman](https://podman.io/docs/installation) locally _(in Ubuntu it can be installed via `sudo apt install qemu-system podman podman-compose -y.`)_
 
-🟡 There is no need to configure registries to use this Dockerfile as it will pull from `docker.io` by default.
-
-However, this image supports alternative image registry, see section bellow [Using GitHub Container Registry](#using-github-container-registry).
-
-Download / clone the repository
+Clone the repository and initialize the git modules _(`submission-pilot2` with the default Golem-based Application )_.
 
 ```
 $ git clone --recurse-submodules https://github.com/Appsilon/experimental-fda-submission-4-podman
