@@ -1,10 +1,14 @@
-ARG LOCAL_DIR=./submissions-pilot2
-ARG APP_DIR=/usr/local/src/submissions-pilot2
-ARG RENV_VERSION="renv@0.15.2"
 ARG R_VERSION=4.2.0
-ARG R_SCRIPT=./docker_app.R
+ARG IMAGE_REGISTRY=docker.io
+ARG IMAGE_ORG=rocker
 
-FROM rocker-org/r-ver:$R_VERSION
+FROM $IMAGE_REGISTRY/$IMAGE_ORG/r-ver:$R_VERSION
+
+LABEL org.opencontainers.image.licenses="GPL-3.0-or-later" \
+      org.opencontainers.image.source="https://github.com/Appsilon/experimental-fda-submission-4-podman" \
+      org.opencontainers.image.vendor="Appsilon" \
+      org.opencontainers.image.authors="André Veríssimo <andre.verissimo@appsilon.com>, Vedha Viyash <vedha@appsilon.com>"
+
 
 RUN apt-get update --quiet \
    && apt-get install \
@@ -19,19 +23,17 @@ RUN apt-get update --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
 
-ARG APP_DIR
-ARG LOCAL_DIR
+ARG LOCAL_DIR=./submissions-pilot2
+ARG APP_DIR=/usr/local/src/submissions-pilot2
 
 COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
-ARG RENV_VERSION
-
 RUN Rscript -e "renv::restore()"
 
-ARG R_SCRIPT
+ARG R_SCRIPT=./entrypoint.R
 
-COPY $R_SCRIPT $APP_DIR/docker_app.R
+COPY $R_SCRIPT $APP_DIR/entrypoint.R
 
-CMD ["Rscript", "docker_app.R"]
+CMD ["Rscript", "entrypoint.R"]

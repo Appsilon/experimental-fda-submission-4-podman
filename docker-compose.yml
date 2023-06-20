@@ -5,7 +5,9 @@ services:
     build:
       context: .
       args:
+        IMAGE_ORG: rocker
+        IMAGE_REGISTRY: docker.io
+        R_VERSION: 4.2.0
         LOCAL_DIR: ./submissions-pilot2
-        RENV_VERSION: renv@0.15.2
     ports:
       - "8787:8787"
