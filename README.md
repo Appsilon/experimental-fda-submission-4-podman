@@ -29,7 +29,7 @@ After running the container, the Teal application is available at `http://localh
 ```bash
 $ podman machine init
 $ podman build . --tag experimental-fda-submission-4-podman
-$ podman pod create --publish 8787:8787 pilot-pod
+$ podman pod create --publish 8787:8787 --name pilot-pod
 $ podman run -dt --pod pilot-pod experimental-fda-submission-4-podman:latest
 ```
 
