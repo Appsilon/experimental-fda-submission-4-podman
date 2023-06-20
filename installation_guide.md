@@ -6,7 +6,7 @@
 2. Install [WSL 2 from the Microsoft Store](https://apps.microsoft.com/store/detail/windows-subsystem-for-linux/9P9TQF7MRM4R)
 3. Install python and pip if not already present. Then install the `podman-compose` package using the following command:
 
-   ```
+   ```bash
    pip install podman-compose
    ```
 
