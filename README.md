@@ -6,7 +6,7 @@ Proof of concept Shiny container by [Appsilon](https://appsilon.com/) based on [
 
 ## Installation and Requirements
 
-Refer the [installation_guide.md](installation_guide.md) for installation steps
+Refer the [installation_guide.md](installation_guide.md) for installation steps for [Windows](installation_guide.md#windows), [Mac OSX](installation_guide.md#macos) and [Ubuntu](installation_guide.md#ubuntu 
 
 ## Steps to run the Pilot-4 app
 
