@@ -29,7 +29,11 @@ COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
-RUN Rscript -e "options(\"renv.config.install.remotes\" = FALSE); renv::restore()"
+# Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
+#  already defined in renv.lock). 
+RUN Rscript \
+  -e "options(\"renv.config.install.remotes\" = FALSE)" \
+  -e "renv::restore()"
 
 ARG R_SCRIPT=./entrypoint.R
 
