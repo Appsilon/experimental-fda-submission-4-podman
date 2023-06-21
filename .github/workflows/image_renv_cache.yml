@@ -44,7 +44,7 @@ jobs:
           build-args: |
             R_VERSION=${{ env.R_VERSION }}
           extra-args: |
-            --volume $(pwd)/renv_cache:/renv_cache
+            --volume ${{ github.workspace }}/renv_cache:/renv_cache
 
   # pilot2-rhino-image:
   #   runs-on: ubuntu-latest
