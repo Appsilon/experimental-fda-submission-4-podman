@@ -48,12 +48,12 @@ jobs:
       - name: Buildah Action
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${IMAGE_NAME}
-          tags: v1 ${{ github.sha }}
+          image: my-new-image
+          tags: v1
           containerfiles: |
             ./renv_cache/Containerfile
           build-args: |
-            R_VERSION=${ vars.R_VERSION }
+            R_VERSION=4.2.0
 
       # - name: Log in to Red Hat Registry
       #   uses: redhat-actions/podman-login@v1
