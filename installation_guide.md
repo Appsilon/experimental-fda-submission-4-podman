@@ -18,7 +18,7 @@
 
    Alternatively, this can be done by running the following command
 
-   ```
+   ```bash
    podman machine init
    ```
 
@@ -34,7 +34,7 @@
 
    or
 
-   ```
+   ```bash
    pip install podman-compose
    ```
 
@@ -42,7 +42,7 @@
 
    Alternatively, this can be done by running the following command
 
-   ```
+   ```bash
    podman machine init
    ```
 
@@ -58,13 +58,13 @@
 
 2. Install `podman-compose` using homebrew or PyPl
 
-   ```
+   ```bash
    brew install podman-compose
    ```
 
    or
 
-   ```
+   ```bash
    pip install podman-compose
    ```
 
@@ -72,7 +72,7 @@
 
    Alternatively, this can be done by running the following command
 
-   ```
+   ```bash
    podman machine init
    ```
 
