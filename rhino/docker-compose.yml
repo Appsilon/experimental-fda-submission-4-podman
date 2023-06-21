@@ -3,8 +3,7 @@ version: "3.1"
 services:
   pilot-4-podman-rhino:
     build:
-      context: .
-      dockerfile: ../Dockerfile
+      context: ..
       args:
         IMAGE_ORG: rocker
         IMAGE_REGISTRY: docker.io
