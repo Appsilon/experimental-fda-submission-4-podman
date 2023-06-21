@@ -54,7 +54,7 @@ jobs:
           containerfiles: |
             ./renv_cache/Containerfile
           build-args: |
-            R_VERSION=4.2.0
+            R_VERSION=${{ env.R_VERSION }}
 
       # - name: Log in to Red Hat Registry
       #   uses: redhat-actions/podman-login@v1
