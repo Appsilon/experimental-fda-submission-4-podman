@@ -4,9 +4,7 @@ on:
   push:
 
 env:
-  RENV_PATHS_LOCKFILE: submissions-pilot2/renv.lock
   RENV_PATHS_ROOT: /home/runner/work/_temp/renv # this cannot be changed
-  RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
 
 jobs:
   # Push image to GitHub Packages.
@@ -16,6 +14,8 @@ jobs:
     env:
       R_VERSION: 4.2.0
       IMAGE_NAME: pilot4-renv-cache
+      RENV_PATHS_LOCKFILE: submissions-pilot2/renv.lock
+      RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
     steps:
       - name: System deppendencies
         run: |
@@ -53,6 +53,7 @@ jobs:
     env:
       R_VERSION: 4.3.0
       IMAGE_NAME: pilot4-rhino-renv-cache
+      RENV_PATHS_LOCKFILE: rhino/pilot2-modified/renv.lock
     steps:
       - name: System deppendencies
         run: |

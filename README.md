@@ -4,9 +4,18 @@
 
 Proof of concept Shiny container by [Appsilon](https://appsilon.com/) based on [Pilot 2](https://github.com/RConsortium/submissions-pilot2/) from the RConsortium.
 
+**Overview**
+
+* Builds container image with [Pilot 2](https://github.com/RConsortium/submissions-pilot2/) for container-based submission
+* Easy reproducibility without having to install R environment and packages
+  * Using `podman-compose` the process only needs 1 command
+  * Manually building it via `podman` uses 3 commands
+* Based on OpenSource [Podman](https://podman.io/)
+* Supports rapid development with cached environment (see [development guide](development_guide.md))
+
 ## Installation and Requirements
 
-Refer the [installation_guide.md](installation_guide.md) for installation steps for [Windows](installation_guide.md#windows), [Mac OSX](installation_guide.md#macos) and [Ubuntu](installation_guide.md#ubuntu 
+Refer the [installation_guide.md](installation_guide.md) for installation steps for [Windows](installation_guide.md#windows), [Mac OSX](installation_guide.md#macos) and [Ubuntu](installation_guide.md#ubuntu
 
 ## Steps to run the Pilot-4 app
 
