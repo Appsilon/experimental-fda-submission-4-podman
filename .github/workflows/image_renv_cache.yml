@@ -2,13 +2,12 @@ name: Demo Push
 
 on:
   push:
-  pull_request:
 
 env:
   IMAGE_NAME: pilot4-renv-cache
   R_VERSION: 4.2.0
   RENV_PATHS_LOCKFILE: renv_cache/renv.lock
-  RENV_PATHS_ROOT: renv_cache/.cache
+  RENV_PATHS_ROOT: /home/runner/work/_temp/renv # this cannot be changed
   RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
 
 jobs:
@@ -34,17 +33,9 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: list cache 1
+      - name: Copy cache to folder
         run: |
-          ls -lna
-
-      - name: list cache 2
-        run: |
-          ls -lna renv_cache/
-
-      - name: list cache 3
-        run: |
-          ls -lna renv_cache/.cache
+          cp -r $RENV_PATHS_ROOT/* ./renv_cache/.cache
 
       - name: Buildah Action
         uses: redhat-actions/buildah-build@v2
