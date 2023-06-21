@@ -88,7 +88,7 @@ ARG IMAGE_ORG=rocker-org
 
 ℹ️ note: This can be done by changing the existing example in `docker-compose.yml` or creating a new service with the different registry.
 
-```
+```dockerfile
 # edit the lines below
 # ...
   build:
