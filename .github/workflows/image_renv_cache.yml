@@ -39,6 +39,7 @@ jobs:
           image: ${{ env.IMAGE_NAME }}
           context: ./
           tags: v1
+          platforms: linux/amd64, linux/arm64
           containerfiles: |
             ./Dockerfile
           extra-args: |
@@ -79,9 +80,9 @@ jobs:
             ./Dockerfile
           build-args: |
             R_VERSION=${{ env.R_VERSION }}
-            IMAGE_ORG: rocker
-            IMAGE_REGISTRY: docker.io
-            LOCAL_DIR: ./rhino/pilot2-modified
-            R_SCRIPT: ./rhino/entrypoint.R
+            IMAGE_ORG=rocker
+            IMAGE_REGISTRY=docker.io
+            LOCAL_DIR=./rhino/pilot2-modified
+            R_SCRIPT=./rhino/entrypoint.R
           extra-args: |
             --volume ${{ github.workspace }}/renv_cache:/renv_cache
