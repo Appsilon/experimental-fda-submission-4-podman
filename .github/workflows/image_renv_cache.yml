@@ -20,6 +20,7 @@ env:
   R_VERSION: 4.2.0
   RENV_PATHS_LOCKFILE: renv_cache/renv.lock
   RENV_PATHS_ROOT: renv_cache/.cache
+  RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
 
 jobs:
   # Push image to GitHub Packages.
@@ -41,8 +42,6 @@ jobs:
         with:
           r-version: 4.2.0 # The R version to download (if necessary) and use.
           # Use "renv" to retrieve R version recorded in renv.lock file.
-        env:
-          RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
 
       - uses: r-lib/actions/setup-renv@v2
 

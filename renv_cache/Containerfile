@@ -35,4 +35,4 @@ RUN mkdir /home/r_user/renv \
 RUN Rscript \
   -e ".libPaths(c('/home/r_user/R'))" \
   -e "install.packages('renv')" \
-  -e " renv::restore(exclude = c('pilot2wrappers'))"
+  -e "renv::restore(exclude = c('pilot2wrappers'))"
