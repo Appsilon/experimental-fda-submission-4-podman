@@ -9,7 +9,6 @@ LABEL org.opencontainers.image.licenses="GPL-3.0-or-later" \
       org.opencontainers.image.vendor="Appsilon" \
       org.opencontainers.image.authors="André Veríssimo <andre.verissimo@appsilon.com>, Vedha Viyash <vedha@appsilon.com>"
 
-
 RUN apt-get update --quiet \
    && apt-get install \
      curl \
@@ -30,7 +29,11 @@ COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
-RUN Rscript -e "renv::restore()"
+# Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
+#  already defined in renv.lock).
+RUN Rscript \
+  -e "options(\"renv.config.install.remotes\" = FALSE)" \
+  -e "renv::restore()"
 
 ARG R_SCRIPT=./entrypoint.R
 
