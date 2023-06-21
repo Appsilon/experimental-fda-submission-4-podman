@@ -70,6 +70,8 @@ jobs:
           # Use "renv" to retrieve R version recorded in renv.lock file.
 
       - uses: r-lib/actions/setup-renv@v2
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy cache to folder
         run: |
