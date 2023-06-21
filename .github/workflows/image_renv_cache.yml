@@ -48,7 +48,7 @@ jobs:
       - name: Buildah Action
         uses: redhat-actions/buildah-build@v2
         with:
-          image: my-new-image
+          image: ${{ env.IMAGE_NAME }}
           context: ./renv_cache
           tags: v1
           containerfiles: |
