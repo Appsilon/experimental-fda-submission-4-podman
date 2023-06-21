@@ -52,7 +52,7 @@
 
    Alternatively, you can install it using brew
 
-   ```
+   ```bash
    brew install podman
    ```
 
