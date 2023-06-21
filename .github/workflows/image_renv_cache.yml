@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: System deppendencies
         run: |
-          sudo apt update -q
-          sudo apt install -y -q qemu-user-static curl libssl-dev libcurl4-openssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+          sudo apt update -quiet
+          sudo apt install -y --quiet qemu-user-static curl libssl-dev libcurl4-openssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 
       - uses: actions/checkout@v3
         with:
@@ -58,7 +58,7 @@ jobs:
       - name: System deppendencies
         run: |
           sudo apt update -q
-          sudo apt install -y -q qemu-user-static
+          sudo apt install -y --quiet qemu-user-static curl libssl-dev libcurl4-openssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 
       - uses: actions/checkout@v3
         with:
