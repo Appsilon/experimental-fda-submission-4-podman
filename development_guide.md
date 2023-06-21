@@ -13,7 +13,7 @@ This will populate the `renv_cache` folder with a valid cache.
 
 #### Step 1A: Pilot2 original image
 
-🟡 Please note that it needs R `v4.2.x` to build the correct package versions.
+🟡 R version `4.2.x` needs to be used to build the cache correctly.
 
 ```R
 Sys.setenv(RENV_PATHS_ROOT = file.path(getwd(), "renv_cache"))
@@ -25,7 +25,7 @@ renv::restore()
 
 This step is the same as 1A, however it uses a different R version and paths
 
-🟡 Please note that it needs R `v4.3.x` to build the correct package versions.
+🟡 R version `4.2.x` needs to be used to build the cache correctly.
 
 ```R
 Sys.setenv(RENV_PATHS_ROOT = file.path(getwd(), "renv_cache"))
