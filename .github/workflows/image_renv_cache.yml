@@ -24,12 +24,13 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  container-build:
     runs-on: ubuntu-latest
 
     steps:
       - name: System deppendencies
         run: |
+          sudo apt update
           sudo apt install -y -q qemu-user-static
 
       - uses: actions/checkout@v3
