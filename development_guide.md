@@ -8,7 +8,7 @@ One use case for this is that you have a container with all the required code to
 
 In this case, let's assume that we want to change the four xpt files inside the `datasets/adam`: `adadas.xpt`, `adlbc.xpt`, `adsl.xpr`, and `adtte.xpt`. We can do this by running this command.
 
-```
+```bash
 podman run -dt --pod pilot-pod -v ./submissions-pilot2/datasets:/home/shiny/submissions-pilot2/datasets experimental-fda-submission-4-podman:latest
 ```
 
