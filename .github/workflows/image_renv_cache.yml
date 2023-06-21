@@ -41,60 +41,47 @@ jobs:
           tags: v1
           containerfiles: |
             ./Dockerfile
-          build-args: |
-            R_VERSION=${{ env.R_VERSION }}
           extra-args: |
             --volume ${{ github.workspace }}/renv_cache:/renv_cache
 
-  # pilot2-rhino-image:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     R_VERSION: 4.3.0
-  #     IMAGE_NAME: pilot4-rhino-renv-cache
-  #     RENV_PATHS_LOCKFILE: rhino/pilot2-modified/renv.lock
-  #   steps:
-  #     - name: System deppendencies
-  #       run: |
-  #         sudo apt update -q
-  #         sudo apt install -y --quiet \
-  #           qemu-user-static
-  #
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: true
-  #
-  #     - name: Cache renv_cache
-  #       id: cache-renv
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: renv_cache
-  #         key: ${{ runner.os }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
-  #         restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}
-  #
-  #     - uses: r-lib/actions/setup-r@v2
-  #       with:
-  #         r-version: ${{ env.R_VERSION }}
-  #         # Use "renv" to retrieve R version recorded in renv.lock file.
-  #
-  #     - uses: r-lib/actions/setup-renv@v2
-  #       env:
-  #         GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-  #
-  #     - name: Copy cache to folder
-  #       run: |
-  #         cp -r $RENV_PATHS_ROOT/* ./renv_cache
-  #
-  #     - name: Build
-  #       uses: redhat-actions/buildah-build@v2
-  #       with:
-  #         image: ${{ env.IMAGE_NAME }}-rhino
-  #         context: ./
-  #         tags: v1
-  #         containerfiles: |
-  #           ./Dockerfile
-  #         build-args: |
-  #           R_VERSION=${{ env.R_VERSION }}
-  #           IMAGE_ORG: rocker
-  #           IMAGE_REGISTRY: docker.io
-  #           LOCAL_DIR: ./rhino/pilot2-modified
-  #           R_SCRIPT: ./rhino/entrypoint.R
+  pilot2-rhino-image:
+    runs-on: ubuntu-latest
+    env:
+      R_VERSION: 4.3.0
+      IMAGE_NAME: pilot4-rhino-renv-cache
+      RENV_PATHS_LOCKFILE: rhino/pilot2-modified/renv.lock
+    steps:
+      - name: System deppendencies
+        run: |
+          sudo apt update -q
+          sudo apt install -y --quiet \
+            qemu-user-static
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Cache renv_cache
+        id: cache-renv
+        uses: actions/cache@v3
+        with:
+          path: renv_cache
+          key: ${{ runner.os }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
+          restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}
+
+      - name: Build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          context: ./
+          tags: v1
+          containerfiles: |
+            ./Dockerfile
+          build-args: |
+            R_VERSION=${{ env.R_VERSION }}
+            IMAGE_ORG: rocker
+            IMAGE_REGISTRY: docker.io
+            LOCAL_DIR: ./rhino/pilot2-modified
+            R_SCRIPT: ./rhino/entrypoint.R
+          extra-args: |
+            --volume ${{ github.workspace }}/renv_cache:/renv_cache
