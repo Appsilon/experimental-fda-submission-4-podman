@@ -4,18 +4,18 @@ on:
   push:
 
 env:
-  IMAGE_NAME: pilot4-renv-cache
-  R_VERSION: 4.2.0
-  RENV_PATHS_LOCKFILE: renv_cache/renv.lock
+  RENV_PATHS_LOCKFILE: submissions-pilot2/renv.lock
   RENV_PATHS_ROOT: /home/runner/work/_temp/renv # this cannot be changed
   RENV_PATHS_CELLAR: submissions-pilot2/renv/cellar
 
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  container-build:
+  pilot2-image:
     runs-on: ubuntu-latest
-
+    env:
+      R_VERSION: 4.2.0
+      IMAGE_NAME: pilot4-renv-cache
     steps:
       - name: System deppendencies
         run: |
@@ -35,15 +35,56 @@ jobs:
 
       - name: Copy cache to folder
         run: |
-          cp -r $RENV_PATHS_ROOT/* ./renv_cache/.cache
+          cp -r $RENV_PATHS_ROOT/* ./renv_cache
 
-      - name: Buildah Action
+      - name: Build
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.IMAGE_NAME }}
-          context: ./renv_cache
+          context: ./
           tags: v1
           containerfiles: |
-            ./renv_cache/Dockerfile
+            ./Dockerfile
           build-args: |
             R_VERSION=${{ env.R_VERSION }}
+
+  pilot2-rhino-image:
+    runs-on: ubuntu-latest
+    env:
+      R_VERSION: 4.3.0
+      IMAGE_NAME: pilot4-rhino-renv-cache
+    steps:
+      - name: System deppendencies
+        run: |
+          sudo apt update -q
+          sudo apt install -y -q qemu-user-static
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ env.R_VERSION }}
+          # Use "renv" to retrieve R version recorded in renv.lock file.
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - name: Copy cache to folder
+        run: |
+          cp -r $RENV_PATHS_ROOT/* ./renv_cache
+
+      - name: Build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}-rhino
+          context: ./
+          tags: v1
+          containerfiles: |
+            ./Dockerfile
+          build-args: |
+            R_VERSION=${{ env.R_VERSION }}
+            IMAGE_ORG: rocker
+            IMAGE_REGISTRY: docker.io
+            LOCAL_DIR: ./rhino/pilot2-modified
+            R_SCRIPT: ./rhino/entrypoint.R

@@ -22,6 +22,10 @@ RUN apt-get update --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
 
+COPY ./renv_cache/ /home/r_user/.renv_cache
+
+ENV RENV_PATHS_ROOT=/home/r_user/.renv_cache
+
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/usr/local/src/submissions-pilot2
 
