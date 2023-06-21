@@ -49,11 +49,12 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: my-new-image
+          context: ./renv_cache
           tags: v1
           containerfiles: |
             ./renv_cache/Containerfile
           build-args: |
-            R_VERSION=4.2.0
+            R_VERSION="4.2.0"
 
       # - name: Log in to Red Hat Registry
       #   uses: redhat-actions/podman-login@v1
