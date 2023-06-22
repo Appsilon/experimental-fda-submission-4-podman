@@ -10,17 +10,21 @@ LABEL org.opencontainers.image.licenses="GPL-3.0-or-later" \
       org.opencontainers.image.authors="André Veríssimo <andre.verissimo@appsilon.com>, Vedha Viyash <vedha@appsilon.com>"
 
 RUN apt-get update --quiet \
-   && apt-get install \
+   && apt-get install -y --quiet \
      curl \
      libssl-dev \
      libcurl4-openssl-dev \
-     libxml2-dev -y --quiet \
+     libxml2-dev \
      libfontconfig1-dev \
      libharfbuzz-dev libfribidi-dev \
      libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
    && apt-get autoremove -y --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
+
+ENV RENV_PATHS_ROOT=/renv_cache
+
+COPY ./renv_cache/ $RENV_PATHS_ROOT
 
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/usr/local/src/submissions-pilot2
