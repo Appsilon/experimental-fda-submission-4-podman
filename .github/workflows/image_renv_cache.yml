@@ -7,7 +7,7 @@ env:
   RENV_PATHS_ROOT: renv_cache
 jobs:
   pilot2-golem-image:
-    name: Golem AMD64 & ARM64 check 🗿
+    name: Golem check 🗿
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -45,8 +45,8 @@ jobs:
             ./Dockerfile
           extra-args: |
             --volume ${{ github.workspace }}/renv_cache:/renv_cache
-  pilot2-rhino-image-amd64:
-    name: Rhino AMD64 & ARM64 check 🦏
+  pilot2-rhino-image:
+    name: Rhino check 🦏
     runs-on: ubuntu-latest
     strategy:
       matrix:
