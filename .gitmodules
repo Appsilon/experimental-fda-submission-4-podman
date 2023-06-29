@@ -1,3 +1,6 @@
+[submodule "submissions-pilot2"]
+	path = submissions-pilot2
+	url = https://github.com/Appsilon/submissions-pilot2
 [submodule "rhino/pilot2-modified"]
 	path = rhino/pilot2-modified
 	url = https://github.com/Appsilon/rhino-fda-pilot
