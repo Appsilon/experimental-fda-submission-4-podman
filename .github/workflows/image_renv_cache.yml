@@ -31,8 +31,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.RENV_PATHS_ROOT }}
-          key: ${{ runner.os }}-${{ env.PLATFORM }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
-          restore-keys: ${{ runner.os }}-${{ env.PLATFORM }}-${{ env.R_VERSION }}
+          key: ${{ runner.os }}-golem-${{ env.PLATFORM }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
+          restore-keys: ${{ runner.os }}-golem-${{ env.PLATFORM }}-${{ env.R_VERSION }}
 
       - name: Build
         uses: redhat-actions/buildah-build@v2
@@ -72,8 +72,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: renv_cache
-          key: ${{ runner.os }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
-          restore-keys: ${{ runner.os }}-${{ env.R_VERSION }}
+          key: ${{ runner.os }}-rhino-${{ env.PLATFORM }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
+          restore-keys: ${{ runner.os }}-rhino-${{ env.PLATFORM }}-${{ env.R_VERSION }}
 
       - name: Build
         uses: redhat-actions/buildah-build@v2
