@@ -22,8 +22,12 @@ RUN apt-get update --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
 
+RUN useradd -m shiny
+
+USER shiny
+
 ARG LOCAL_DIR=./submissions-pilot2
-ARG APP_DIR=/usr/local/src/submissions-pilot2
+ARG APP_DIR=/home/shiny/submissions-pilot2
 
 COPY $LOCAL_DIR $APP_DIR
 
