@@ -1,0 +1,94 @@
+name: Build images 📸
+
+on:
+  push:
+
+env:
+  RENV_PATHS_ROOT: renv_cache
+jobs:
+  pilot2-golem-image:
+    name: Golem check 🗿
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux/amd64, linux/arm64]
+    env:
+      R_VERSION: 4.2.0
+      IMAGE_NAME: pilot4-renv-cache
+      RENV_PATHS_LOCKFILE: submissions-pilot2/renv.lock
+      PLATFORM: ${{ matrix.platform }}
+    steps:
+      - name: System deppendencies
+        run: |
+          sudo apt update --quiet
+          sudo apt install -y --quiet qemu-user-static
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Cache renv_cache
+        id: cache-renv
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-golem-${{ env.PLATFORM }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
+          restore-keys: ${{ runner.os }}-golem-${{ env.PLATFORM }}-${{ env.R_VERSION }}
+
+      - name: Build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          context: ./
+          tags: v1
+          platforms: ${{ env.PLATFORM }}
+          containerfiles: |
+            ./Dockerfile
+          extra-args: |
+            --volume ${{ github.workspace }}/renv_cache:/renv_cache
+  pilot2-rhino-image:
+    name: Rhino check 🦏
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux/amd64, linux/arm64]
+    env:
+      R_VERSION: 4.3.0
+      IMAGE_NAME: pilot4-rhino-renv-cache
+      RENV_PATHS_LOCKFILE: rhino/pilot2-modified/renv.lock
+      PLATFORM: ${{ matrix.platform }}
+    steps:
+      - name: System deppendencies
+        run: |
+          sudo apt update -q
+          sudo apt install -y --quiet \
+            qemu-user-static
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Cache renv_cache
+        id: cache-renv
+        uses: actions/cache@v3
+        with:
+          path: renv_cache
+          key: ${{ runner.os }}-rhino-${{ env.PLATFORM }}-${{ env.R_VERSION }}-${{ hashFiles('$RENV_PATHS_LOCKFILE') }}
+          restore-keys: ${{ runner.os }}-rhino-${{ env.PLATFORM }}-${{ env.R_VERSION }}
+
+      - name: Build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          context: ./
+          tags: v1
+          platforms: ${{ env.PLATFORM }}
+          containerfiles: |
+            ./Dockerfile
+          build-args: |
+            R_VERSION=${{ env.R_VERSION }}
+            IMAGE_ORG=rocker
+            IMAGE_REGISTRY=docker.io
+            LOCAL_DIR=./rhino/pilot2-modified
+            R_SCRIPT=./rhino/entrypoint.R
+          extra-args: |
+            --volume ${{ github.workspace }}/renv_cache:/renv_cache

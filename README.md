@@ -11,6 +11,7 @@ Proof of concept Shiny container by [Appsilon](https://appsilon.com/) based on [
   * Using `podman-compose` the process only needs 1 command
   * Manually building it via `podman` uses 3 commands
 * Based on OpenSource [Podman](https://podman.io/)
+* Supports rapid development with cached environment (see [local cache guide](local_cache_guide.md))
 
 ## Installation and Requirements
 
