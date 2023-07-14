@@ -26,7 +26,7 @@ RUN useradd -m shiny
 
 ENV RENV_PATHS_ROOT=/home/shiny/renv
 
-COPY ./renv_cache/ $RENV_PATHS_ROOT
+COPY --chown=shiny:shiny ./renv_cache/ $RENV_PATHS_ROOT
 
 # Make sure user has correct permissions on
 RUN chown -R shiny:shiny $RENV_PATHS_ROOT
@@ -36,9 +36,7 @@ USER shiny
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/home/shiny/submissions-pilot2
 
-COPY $LOCAL_DIR $APP_DIR
-
-RUN chown -R shiny:shiny $APP_DIR
+COPY --chown=shiny:shiny $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
