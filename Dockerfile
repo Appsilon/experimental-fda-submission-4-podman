@@ -38,6 +38,8 @@ ARG APP_DIR=/home/shiny/submissions-pilot2
 
 COPY $LOCAL_DIR $APP_DIR
 
+RUN chown -R shiny:shiny $APP_DIR
+
 WORKDIR $APP_DIR
 
 ENV LOCAL_R_LIBRARY=/home/shiny/R/library
