@@ -22,15 +22,13 @@ RUN apt-get update --quiet \
    && apt-get clean --quiet \
    && rm -rf /var/lib/apt/lists/*
 
-
-ENV RENV_PATHS_ROOT=/renv_cache
-
-COPY ./renv_cache/ $RENV_PATHS_ROOT
-
-RUN useradd -m shiny && chown -R shiny:shiny /renv_cache
+RUN useradd -m shiny
 
 USER shiny
 
+ENV RENV_PATHS_ROOT=/home/shiny/renv
+
+COPY ./renv_cache/ $RENV_PATHS_ROOT
 
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/home/shiny/submissions-pilot2
