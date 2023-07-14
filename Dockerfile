@@ -27,7 +27,7 @@ ENV RENV_PATHS_ROOT=/renv_cache
 
 COPY ./renv_cache/ $RENV_PATHS_ROOT
 
-RUN useradd -m shiny
+RUN useradd -m shiny && chown -R shiny:shiny /renv_cache
 
 USER shiny
 
@@ -43,6 +43,7 @@ WORKDIR $APP_DIR
 #  already defined in renv.lock).
 RUN Rscript \
   -e "options(\"renv.config.install.remotes\" = FALSE)" \
+  -e "renv::load()" \
   -e "renv::restore()"
 
 ARG R_SCRIPT=./entrypoint.R

@@ -8,7 +8,7 @@ services:
         IMAGE_ORG: rocker
         IMAGE_REGISTRY: docker.io
         R_VERSION: 4.3.0
-        LOCAL_DIR: ./pilot2-modified
-        R_SCRIPT: ./entrypoint.R
+        LOCAL_DIR: ./rhino/pilot2-modified
+        R_SCRIPT: ./rhino/entrypoint.R
     ports:
       - "9797:8787"
