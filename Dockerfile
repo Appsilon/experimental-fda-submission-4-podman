@@ -24,11 +24,13 @@ RUN apt-get update --quiet \
 
 RUN useradd -m shiny
 
-USER shiny
-
 ENV RENV_PATHS_ROOT=/home/shiny/renv
 
 COPY ./renv_cache/ $RENV_PATHS_ROOT
+
+RUN chown -R shiny:shiny $RENV_PATHS_ROOT
+
+USER shiny
 
 ARG LOCAL_DIR=./submissions-pilot2
 ARG APP_DIR=/home/shiny/submissions-pilot2
