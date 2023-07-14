@@ -40,10 +40,14 @@ COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
 
+ENV LOCAL_R_LIBRARY=/home/shiny/R/library
+
 # Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
 #  already defined in renv.lock).
-RUN Rscript --no-init-file \
+RUN mkdir -p $LOCAL_R_LIBRARY \
+ && Rscript --no-init-file \
   -e "options(\"renv.config.install.remotes\" = FALSE)" \
+  -e ".libPaths(file.path(Sys.getenv('LOCAL_R_LIBRARY')))" \
   -e "install.packages('renv')" \
   -e "renv::load()" \
   -e "renv::restore()"
