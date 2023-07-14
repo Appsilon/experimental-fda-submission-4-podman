@@ -43,14 +43,14 @@ WORKDIR $APP_DIR
 RUN ls -ln /home/shiny/
 RUN ls -ln /home/shiny/renv
 RUN ls -ln /home/shiny/renv/library
-RUN ls -ln /home/shiny/renv/library/R-4.3
-RUN ls -ln /home/shiny/renv/library/R-4.3/x86_64-pc-linux-gnu
+RUN ls -ln /home/shiny/renv/library/R-4.*
+RUN ls -ln /home/shiny/renv/library/R-4.*/*
 
 RUN ls -ln /home/shiny/submissions-pilot2
 RUN ls -ln /home/shiny/submissions-pilot2/renv
 RUN ls -ln /home/shiny/submissions-pilot2/renv/library
-RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.3
-RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.3/x86_64-pc-linux-gnu
+RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.*
+RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.*/*
 
 # Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
 #  already defined in renv.lock).
