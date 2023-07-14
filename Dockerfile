@@ -42,6 +42,10 @@ WORKDIR $APP_DIR
 
 ENV LOCAL_R_LIBRARY=/home/shiny/R/library
 
+RUN ls -ln /home/shiny
+
+RUN ls -ln /home/shiny/renv
+
 # Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
 #  already defined in renv.lock).
 RUN mkdir -p $LOCAL_R_LIBRARY \
