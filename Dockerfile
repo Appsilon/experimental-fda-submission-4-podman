@@ -28,6 +28,7 @@ ENV RENV_PATHS_ROOT=/home/shiny/renv
 
 COPY ./renv_cache/ $RENV_PATHS_ROOT
 
+# Make sure user has correct permissions on
 RUN chown -R shiny:shiny $RENV_PATHS_ROOT
 
 USER shiny
@@ -38,6 +39,12 @@ ARG APP_DIR=/home/shiny/submissions-pilot2
 COPY $LOCAL_DIR $APP_DIR
 
 WORKDIR $APP_DIR
+
+RUN ls -ln /home/shiny/submissions-pilot2
+RUN ls -ln /home/shiny/submissions-pilot2/renv
+RUN ls -ln /home/shiny/submissions-pilot2/renv/library
+RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.3
+RUN ls -ln /home/shiny/submissions-pilot2/renv/library/R-4.3/x86_64-pc-linux-gnu
 
 # Prevents RENV from mistakenly download from teal.* remotes (as the dependencies are
 #  already defined in renv.lock).
