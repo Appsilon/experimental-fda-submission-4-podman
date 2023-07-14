@@ -44,6 +44,7 @@ WORKDIR $APP_DIR
 #  already defined in renv.lock).
 RUN Rscript --no-init-file \
   -e "options(\"renv.config.install.remotes\" = FALSE)" \
+  -e "install.packages('renv')" \
   -e "renv::load()" \
   -e "renv::restore()"
 
